@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Accept a payment</title>
+    <meta name="description" content="A demo of a payment on Stripe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <!-- My payment form -->
+    <form id="payment-form">
+      <h3>Delivery Address</h3>
+      <div class="form-group">
+        <label>
+          Full Name
+          <input type="text" id="fullname" required />
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          Street Address
+          <input type="text" id="address" required />
+        </label>
+      </div>
+      <div class="form-row">
+        <label>
+          City
+          <input type="text" id="city" required />
+        </label>
+      </div>
+      <div class="form-group">
+        <label>
+          Country
+          <select id="country" required>
+            <option value="">Select a country</option>
+            <option value="HK">Hong Kong SAR</option>
+            <option value="Mainland">Mainland China</option>
+            <option value="Taiwan">Taiwan</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Quantity
+          <input type="number" id="quantity" name="quantity" min="1" max="99" value="1" required />
+        </label>
+      </div>
+
+      <h3>Payment Breakdown</h3>
+      <div id="breakdown" class="breakdown-section">
+        <table class="breakdown-table">
+          <tbody>
+            <tr>
+              <td class="breakdown-label">Book (HK$10.00 × <span id="breakdown-qty">1</span>)</td>
+              <td class="breakdown-amount">HK$<span id="breakdown-subtotal">10.00</span></td>
+            </tr>
+            <tr>
+              <td class="breakdown-label">Packaging & Handling</td>
+              <td class="breakdown-amount">HK$<span id="breakdown-packaging">10.00</span></td>
+            </tr>
+            <tr>
+              <td class="breakdown-label">Shipping to <span id="breakdown-country">HK</span></td>
+              <td class="breakdown-amount">HK$<span id="breakdown-shipping">20.00</span></td>
+            </tr>
+            <tr class="breakdown-total">
+              <td class="breakdown-label"><strong>Total</strong></td>
+              <td class="breakdown-amount"><strong>HK$<span id="breakdown-total">40.00</span></strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Payment Information</h3>
+      <label>
+        Email
+        <input type="email" id="email" required />
+      </label>
+      <div id="email-errors" class="error-message"></div>
+      <h4>Payment Details</h4>
+      <div id="payment-element">
+        <!--Stripe.js injection-->
+      </div>
+      <button id="submit">
+        <div class="spinner hidden" id="spinner"></div>
+        <span id="button-text">Pay now</span>
+      </button>
+      <div id="payment-message" class="hidden"></div>
+    </form>
+  </body>
+</html>
