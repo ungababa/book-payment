@@ -187,4 +187,6 @@ def return_page():
     return send_from_directory('public', 'return.html')
 
 if __name__ == '__main__':
-    app.run(port=4242)
+    # Use PORT env var when available (Render sets this). Bind to 0.0.0.0 for external access.
+    port = int(os.environ.get('PORT', 4242))
+    app.run(host='0.0.0.0', port=port)

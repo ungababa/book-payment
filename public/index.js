@@ -164,7 +164,8 @@ async function handleSubmit(e) {
   const { error, paymentIntent } = await stripe.confirmPayment({
     elements,
     confirmParams: {
-      return_url: "http://localhost:4242/return",
+      // Use the current origin so redirects work locally and when deployed (Render/GitHub Pages, etc.)
+      return_url: `${window.location.origin}/return`,
       receipt_email: emailInput.value,
     }
   });
