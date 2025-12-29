@@ -187,4 +187,4 @@ def return_page():
     return send_from_directory('public', 'return.html')
 
 if __name__ == '__main__':
-    app.run(port=4242)
+    app.run(port=10000)
